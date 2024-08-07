@@ -1,0 +1,41 @@
+bool in(struct ListNode *node, struct ListNode **arr, int size) ;
+bool in(struct ListNode *node, struct ListNode **arr, int size) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == node) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool hasCycle(struct ListNode *head) {
+    int capacity = 2;
+    struct ListNode **arr = (struct ListNode **)malloc(capacity * sizeof(struct ListNode *)); 
+    int size = 0;
+
+    while (head != NULL) {
+        if (head->next == NULL) {
+            free(arr);
+            return false;
+        }
+        
+        if (!in(head, arr, size)) {
+            if (size == capacity) {
+                capacity *= 2;
+                arr = (struct ListNode **)realloc(arr, capacity * sizeof(struct ListNode *));
+            }
+            arr[size++] = head;
+        } else {
+            free(arr);
+            return true;
+        }
+        head = head->next;
+    }
+
+    free(arr);
+    return false;
+}
+
+
+//Runtime 130ms
+//Memory 11.9mb
