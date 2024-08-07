@@ -1,0 +1,22 @@
+int findDuplicate(int* nums, int numsSize) {
+    
+    int i,j;
+    int hash[numsSize+1];
+
+    for(i=0;i<=numsSize;i++)
+    {
+        hash[i]=-1;
+    }
+
+    for(i=0;i<numsSize;i++)
+    {
+        if( hash[nums[i]]!= -1 ){
+            return nums[i];
+        }
+        hash[nums[i]] = 1;
+    }
+    return -1;
+
+    
+}
+//Runtime 69ms
