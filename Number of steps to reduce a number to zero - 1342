@@ -1,0 +1,16 @@
+int numberOfSteps(int num){
+
+int count=0,i;
+for(i=num;i!=0;)
+{
+    if(i%2==0)
+        i/=2;
+    else
+        i--;
+
+    count++;
+}
+return count;
+}
+
+//Runtime 2ms 
