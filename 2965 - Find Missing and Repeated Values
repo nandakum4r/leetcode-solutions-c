@@ -1,0 +1,39 @@
+
+int* findMissingAndRepeatedValues(int** grid, int gridSize, int* gridColSize, int* returnSize) {
+int i, j;
+ long long int act = 0, actSquared = 0;
+ long long int sum1_n, sum1_nSquared;
+
+// Calculate the actual sums
+for (i = 0; i < gridSize; i++) {
+    for (j = 0; j < gridColSize[i]; j++) {
+        act += grid[i][j];
+        actSquared += grid[i][j] * grid[i][j];
+    }
+}
+
+long long int n = gridSize * gridSize; // Calculate the total number of elements
+
+// Calculate the expected sums for numbers 1 to n
+sum1_n = (long long )(n * (n + 1)) / 2;
+sum1_nSquared = (long long)(n * (n + 1) * (2 * n + 1)) / 6;
+
+long long int A_min_B = act - sum1_n;
+long long int A_plus_B = (actSquared - sum1_nSquared) / A_min_B;
+
+int *result = (int *)malloc(sizeof(int) * 2);
+if (!result) {
+    *returnSize = 0;
+    return NULL;
+}
+
+result[0] = (A_min_B + A_plus_B) / 2; // Missing number
+result[1] = (A_plus_B - A_min_B) / 2; // Repeated number
+
+*returnSize = 2;
+
+return result;
+
+}
+
+//Runtime 23 ms
