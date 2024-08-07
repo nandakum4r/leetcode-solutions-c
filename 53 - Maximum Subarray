@@ -1,0 +1,14 @@
+
+int maxSubArray(int* nums, int numsSize) {
+    
+    int max=nums[0];
+    int curr=nums[0];
+
+    int i;
+    for(i=1;i<numsSize;i++)
+    {
+        curr= (curr > 0)? curr + nums[i] : nums[i];
+        max = (max > curr)? max : curr;
+    }
+    return max;
+}
