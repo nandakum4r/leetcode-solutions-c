@@ -1,0 +1,24 @@
+bool searchMatrix(int** matrix, int matrixSize, int* matrixColSize, int target) {
+    
+    int i,j;
+    for(i=0;i<matrixSize;i++)
+    {
+        if ( target < matrix[i][matrixColSize[i]-1] )           // if target is less than last element of this row it must be in this row.
+        {
+            for(j=0;j<matrixColSize[i];j++)
+            {
+                if ( target == matrix[i][j] )
+                    return true;
+            }
+        }
+
+        else if (target == matrix[i][matrixColSize[i]-1] )
+                return true;
+            
+    }
+
+    return false;
+}
+
+//Runtime 3ms
+//Memory 6.1mb
