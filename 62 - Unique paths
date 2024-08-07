@@ -30,3 +30,5 @@ int uniquePaths(int m, int n) {
 
     return result;
 }
+//Runtime 0ms
+//Memory 7.7mb
